@@ -26,10 +26,6 @@ corrplot(cor_matrix_green_16s,tl.cex = 0.6,tl.col="black",is.corr=FALSE)
 cor_matrix_roasted_16s <- cor(correlation_16s,correlation_roasted, method = "spearman")
 corrplot(cor_matrix_roasted_16s,tl.cex = 0.6,tl.col="black",is.corr=FALSE)
 
-#correlation plot, bacteria co-occurence/co-exclusion
-cor_matrix_16s <- cor(correlation_16s, method = "spearman")
-corrplot(cor_matrix_16s,tl.col="black",order="hclust",type="upper")
-
 #correlation plot, green coffee vs yeast
 cor_matrix_green_its <- cor(correlation_its,correlation_green, method = "spearman")
 corrplot(cor_matrix_green_its,tl.cex = 0.6,tl.col="black",is.corr=FALSE)
@@ -37,11 +33,3 @@ corrplot(cor_matrix_green_its,tl.cex = 0.6,tl.col="black",is.corr=FALSE)
 #correlation plot, roasted coffee vs yeast
 cor_matrix_roasted_its <- cor(correlation_its,correlation_roasted, method = "spearman")
 corrplot(cor_matrix_roasted_its,tl.cex = 0.6,tl.col="black",is.corr=FALSE)
-
-#correlation plot, yeast co-occurence/co-exclusion
-cor_matrix_its <- cor(correlation_its, method = "spearman")
-corrplot(cor_matrix_its,tl.col="black",order="hclust",type="upper")
-
-#correlation plot, bacteria vs yeast
-cor_matrix_its_16s <- cor(correlation_its,correlation_16s, method = "spearman")
-corrplot(cor_matrix_its_16s,tl.cex = 0.6,tl.col="black",is.corr=FALSE)
