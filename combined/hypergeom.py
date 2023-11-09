@@ -35,8 +35,6 @@ def hypergeom_test(data, outputName):
 
 hypergeom_test(combined_inoculated,"microorganisms_inoculated_hypergeom")
 hypergeom_test(combined_standard,"microorganisms_standard_hypergeom")
-hypergeom_test(mult1000_inoculated, "metabolites_1000_inoculated_hypergeom")
-hypergeom_test(mult1000_standard, "metabolites_1000_standard_hypergeom")
 hypergeom_test(rounded_inoculated, "metabolites_rounded_inoculated_hypergeom")
 hypergeom_test(rounded_standard, "metabolites_rounded_standard_hypergeom")
 
