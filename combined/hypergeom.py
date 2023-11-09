@@ -45,6 +45,7 @@ def correct_pval(file_name):
     df.to_excel(f"Hypergeometric-test-results/{file_name}.xlsx")
 
 
-# run function on all files
+# run function on 2 files created by combining metabolites and microorganisms for each fermentation type (inoculated & standard)
+# input files are external 
 correct_pval("hypergeom_p_values_inoculated")
 correct_pval("hypergeom_p_values_standard")
