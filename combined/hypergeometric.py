@@ -8,12 +8,11 @@ combined_standard = pd.read_excel("combined_standard.xlsx", header=0, index_col=
 matched_metabolites_inoculated = pd.read_excel("matched_metabolite_inoculated.xlsx", header=0, index_col=0)
 matched_metabolites_standard = pd.read_excel("matched_metabolite_standard.xlsx", header=0, index_col=0)
 
-mult1000_inoculated = matched_metabolites_inoculated.multiply(1000).round()
-mult1000_standard = matched_metabolites_standard.multiply(1000).round()
+#transform metabolite abundances, need to be whole numbers 
 rounded_inoculated = matched_metabolites_inoculated.round()
 rounded_standard = matched_metabolites_standard.round()
 
-
+#Function for hypergeometric test
 def hypergeom_test(data, outputName):
 
     p_vals = [] # lista a la que se van a agregar los p_values
@@ -34,10 +33,18 @@ def hypergeom_test(data, outputName):
 
     return p_vals
 
-
 hypergeom_test(combined_inoculated,"microorganisms_inoculated_hypergeom")
 hypergeom_test(combined_standard,"microorganisms_standard_hypergeom")
 hypergeom_test(mult1000_inoculated, "metabolites_1000_inoculated_hypergeom")
 hypergeom_test(mult1000_standard, "metabolites_1000_standard_hypergeom")
 hypergeom_test(rounded_inoculated, "metabolites_rounded_inoculated_hypergeom")
 hypergeom_test(rounded_standard, "metabolites_rounded_standard_hypergeom")
+
+# Correct p-values by False Discovery Rate correction (Benjamini-Hochberg)
+def correct_pval(file_name):
+    df = pd.read_excel(f"Hypergeometric-test-results/{file_name}.xlsx", header=0, index_col=0)
+    df['correction_scipy'] = false_discovery_control(df['p_value'])
+    df.to_excel(f"Hypergeometric-test-results/{file_name}.xlsx")
+
+# run function on all files
+# correct_pval("metabolites_rounded_inoculated_hypergeom")
