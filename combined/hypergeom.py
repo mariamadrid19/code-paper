@@ -1,6 +1,6 @@
 import pandas as pd
 from scipy.stats import hypergeom
-
+from scipy.stats import false_discovery_control
 
 # data
 combined_inoculated = pd.read_excel("combined_inoculated.xlsx", header=0, index_col=0)
@@ -41,8 +41,10 @@ hypergeom_test(rounded_standard, "metabolites_rounded_standard_hypergeom")
 # Correct p-values by False Discovery Rate correction (Benjamini-Hochberg)
 def correct_pval(file_name):
     df = pd.read_excel(f"Hypergeometric-test-results/{file_name}.xlsx", header=0, index_col=0)
-    df['correction_scipy'] = false_discovery_control(df['p_value'])
+    df['correction_scipy'] = false_discovery_control(df['p-value'])
     df.to_excel(f"Hypergeometric-test-results/{file_name}.xlsx")
 
+
 # run function on all files
-# correct_pval("metabolites_rounded_inoculated_hypergeom")
+correct_pval("hypergeom_p_values_inoculated")
+correct_pval("hypergeom_p_values_standard")
